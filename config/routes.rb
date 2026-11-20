@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
+  resources :orders, only: [:show]
+  devise_for :users
+  get "checkout", to: "checkout#new", as: :checkout
+  post "checkout", to: "checkout#create", as: :place_order
+  get "cart", to: "cart#show", as: :cart
+  post "cart/add/:product_id", to: "cart#add", as: :add_to_cart
+  get "store/index"
+  root "store#index"
   ActiveAdmin.routes(self)
-  devise_for :admin_users
+  devise_for :admin_users, ActiveAdmin::Devise.config
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

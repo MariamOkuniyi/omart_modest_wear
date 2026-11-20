@@ -1,0 +1,52 @@
+<div class="container py-5">
+  <h1 class="mb-4">Your Shopping Cart</h1>
+
+  <% if notice.present? %>
+    <div class="alert alert-success"><%= notice %></div>
+  <% end %>
+
+  <% if @products.any? %>
+    <table class="table table-bordered align-middle">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% total = 0 %>
+
+        <% @products.each do |product| %>
+          <% quantity = @cart[product.id.to_s].to_i %>
+          <% subtotal = product.price * quantity %>
+          <% total += subtotal %>
+
+          <tr>
+            <td><%= product.name %></td>
+            <td><%= number_to_currency(product.price) %></td>
+            <td><%= quantity %></td>
+            <td><%= number_to_currency(subtotal) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <h3 class="text-end">
+      Total: <%= number_to_currency(total) %>
+    </h3>
+  <% else %>
+    <div class="alert alert-info">
+      Your shopping cart is empty.
+    </div>
+  <% end %>
+
+  <%= link_to "Continue Shopping", root_path, class: "btn btn-dark mt-3" %>
+  <% if @products.any? %>
+    <%= link_to "Proceed to Checkout",
+      checkout_path,
+      class: "btn btn-success mt-3 ms-2" %>
+  <% end %>
+</div>

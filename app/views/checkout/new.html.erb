@@ -1,0 +1,61 @@
+<div class="container py-5">
+  <h1 class="mb-4">Checkout</h1>
+
+  <p class="text-muted">
+    Please enter your shipping information to complete your order.
+  </p>
+
+  <%= form_with model: @order, url: place_order_path, local: true do |form| %>
+
+    <div class="mb-3">
+      <%= form.label :full_name, "Full Name" %>
+      <%= form.text_field :full_name, class: "form-control", required: true %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :email, "Email Address" %>
+      <%= form.email_field :email, class: "form-control", required: true %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :street_address, "Street Address" %>
+      <%= form.text_field :street_address, class: "form-control", required: true %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :city, "City" %>
+      <%= form.text_field :city, class: "form-control", required: true %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :province, "Province or Territory" %>
+      <%= form.select :province,
+          [
+            ["Alberta", "AB"],
+            ["British Columbia", "BC"],
+            ["Manitoba", "MB"],
+            ["New Brunswick", "NB"],
+            ["Newfoundland and Labrador", "NL"],
+            ["Northwest Territories", "NT"],
+            ["Nova Scotia", "NS"],
+            ["Nunavut", "NU"],
+            ["Ontario", "ON"],
+            ["Prince Edward Island", "PE"],
+            ["Quebec", "QC"],
+            ["Saskatchewan", "SK"],
+            ["Yukon", "YT"]
+          ],
+          { prompt: "Select your province" },
+          { class: "form-select", required: true } %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :postal_code, "Postal Code" %>
+      <%= form.text_field :postal_code, class: "form-control", required: true %>
+    </div>
+
+    <%= form.submit "Place Order", class: "btn btn-dark" %>
+    <%= link_to "Back to Cart", cart_path, class: "btn btn-outline-secondary ms-2" %>
+
+  <% end %>
+</div>

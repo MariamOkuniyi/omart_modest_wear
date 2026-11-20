@@ -7,3 +7,28 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+products = [
+  ["Everyday Navy Abaya", "Abayas", "Comfortable navy abaya with a relaxed fit for everyday wear.", 69.99, 12],
+  ["Embroidered Occasion Abaya", "Abayas", "Elegant abaya with delicate embroidery for special occasions.", 109.99, 8],
+  ["Premium Chiffon Hijab", "Hijabs", "Lightweight chiffon hijab with a soft flowing finish.", 19.99, 30],
+  ["Cotton Jersey Hijab", "Hijabs", "Stretchy breathable jersey hijab for comfortable daily styling.", 24.99, 25],
+  ["Floral Maxi Dress", "Modest Dresses", "Long-sleeved floral maxi dress with a loose modest silhouette.", 64.99, 15],
+  ["Pleated Evening Dress", "Modest Dresses", "Full-length pleated dress suitable for formal occasions.", 89.99, 10],
+  ["Linen Tunic and Trouser Set", "Two-Piece Sets", "Relaxed linen tunic paired with matching wide-leg trousers.", 79.99, 14],
+  ["Casual Co-ord Set", "Two-Piece Sets", "Comfortable matching top and trousers for everyday modest fashion.", 59.99, 18],
+  ["Magnetic Hijab Pins", "Accessories", "Set of secure magnetic pins that hold hijabs without damaging fabric.", 12.99, 40]
+]
+
+products.each do |name, category_name, description, price, stock|
+  category = Category.find_by!(name: category_name)
+
+  Product.find_or_create_by!(name: name) do |product|
+    product.category = category
+    product.description = description
+    product.price = price
+    product.stock_quantity = stock
+    product.on_sale = false
+  end
+end
+
+puts "Total products: #{Product.count}"
