@@ -11,9 +11,6 @@ class CheckoutController < ApplicationController
   }.freeze
 
   def new
-  Rails.logger.info "DEBUG WARDEN USER CLASS: #{request.env['warden'].user(:user).class.name}"
-  Rails.logger.info "DEBUG SESSION FETCH CLASS: #{request.env['warden'].session_serializer.fetch(:user).class.name}"
-    Rails.logger.info "DEBUG WARDEN SESSION DATA: #{request.session['warden.user.user.key'].inspect}"
   @order = current_user.orders.build
 end
 
