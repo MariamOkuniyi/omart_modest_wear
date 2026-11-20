@@ -20,4 +20,10 @@ class Product < ApplicationRecord
 
   # Sale status must be either true or false.
   validates :on_sale, inclusion: { in: [ true, false ] }
+  def self.ransackable_associations(auth_object = nil)
+    [ "category" ]
+  end
+  def self.ransackable_attributes(auth_object = nil)
+    %w[id category_id name description price stock_quantity on_sale created_at updated_at]
+  end
 end

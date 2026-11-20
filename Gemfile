@@ -4,6 +4,7 @@ source "https://rubygems.org"
 gem "rails", "~> 8.1.4", ">= 8.1.4.1"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
+gem "sprockets-rails"
 gem "devise"
 gem "activeadmin"
 # Use sqlite3 as the database for Active Record
