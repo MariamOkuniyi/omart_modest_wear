@@ -1,8 +1,9 @@
 require "test_helper"
 
 class CheckoutControllerTest < ActionDispatch::IntegrationTest
-  test "should get new" do
-    get checkout_new_url
-    assert_response :success
+  test "checkout requires customer login" do
+    get checkout_path
+
+    assert_redirected_to new_user_session_path
   end
 end
