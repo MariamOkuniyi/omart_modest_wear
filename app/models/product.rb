@@ -19,5 +19,5 @@ class Product < ApplicationRecord
                              }
 
   # Sale status must be either true or false.
-  validates :on_sale, inclusion: { in: [true, false] }
+  validates :on_sale, inclusion: { in: [ true, false ] }
 end
