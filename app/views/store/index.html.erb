@@ -67,7 +67,11 @@
             <p>
               Stock: <%= product.stock_quantity %>
             </p>
-            <%= button_to "Add to Cart",
+            <%= link_to "View Details",
+                product_path(product),
+                class: "btn btn-outline-dark w-100 mb-2" %>
+
+                  <%= button_to "Add to Cart",
                 add_to_cart_path(product),
                 method: :post,
                 class: "btn btn-dark w-100" %>

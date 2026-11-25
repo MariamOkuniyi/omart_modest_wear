@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   resources :orders, only: [:show]
+  resources :products, only: [:show]
+
   devise_for :users
   get "checkout", to: "checkout#new", as: :checkout
   post "checkout", to: "checkout#create", as: :place_order
