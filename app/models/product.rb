@@ -3,6 +3,26 @@ class Product < ApplicationRecord
   # Each product belongs to one clothing category.
   belongs_to :category
 
+  # Attach one product image using Rails Active Storage.
+  has_one_attached :image
+
+  # Validate uploaded product images.
+  validate :acceptable_image
+
+  private
+
+  def acceptable_image
+    return unless image.attached?
+
+    unless image.blob.content_type.in?(%w[image/jpeg image/png image/webp])
+      errors.add(:image, "must be a JPG, PNG, or WebP image")
+    end
+
+    if image.blob.byte_size > 5.megabytes
+      errors.add(:image, "must be smaller than 5 MB")
+    end
+  end
+
   # Product name and description are required.
   validates :name, presence: true
   validates :description, presence: true

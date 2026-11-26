@@ -49,8 +49,22 @@
     <% @products.each do |product| %>
       <div class="col-md-4">
         <div class="card h-100 shadow-sm">
-          <div class="card-body">
-            <h5 class="card-title"><%= product.name %></h5>
+
+  <!-- Display the uploaded product image -->
+  <% if product.image.attached? %>
+    <%= image_tag product.image,
+        class: "card-img-top",
+        alt: product.name,
+        style: "height: 250px; object-fit: contain;" %>
+  <% else %>
+    <div class="bg-light d-flex align-items-center justify-content-center"
+         style="height: 250px;">
+      <span class="text-muted">No Image Available</span>
+    </div>
+  <% end %>
+
+  <div class="card-body">
+    <h5 class="card-title"><%= product.name %></h5>
 
             <p class="text-muted">
               <%= product.category.name %>
