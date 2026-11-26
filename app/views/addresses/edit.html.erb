@@ -1,0 +1,56 @@
+<div class="container py-5">
+  <h1 class="mb-4">My Shipping Address</h1>
+
+  <p class="text-muted">
+    Save your shipping information for a faster checkout.
+  </p>
+
+  <% if @user.errors.any? %>
+    <div class="alert alert-danger">
+      <h5>Please correct the following errors:</h5>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_with model: @user, url: addresses_path, method: :patch do |form| %>
+
+    <div class="mb-3">
+      <%= form.label :full_name, "Full Name" %>
+      <%= form.text_field :full_name, class: "form-control", required: true %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :street_address, "Street Address" %>
+      <%= form.text_field :street_address, class: "form-control", required: true %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :city, "City" %>
+      <%= form.text_field :city, class: "form-control", required: true %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :province_id, "Province or Territory" %>
+      <%= form.collection_select :province_id,
+          Province.order(:name),
+          :id,
+          :name,
+          { prompt: "Select your province or territory" },
+          { class: "form-select", required: true } %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :postal_code, "Postal Code" %>
+      <%= form.text_field :postal_code, class: "form-control", required: true %>
+    </div>
+
+    <%= form.submit "Save Address", class: "btn btn-dark" %>
+    <%= link_to "Back to Shop", root_path,
+        class: "btn btn-outline-secondary ms-2" %>
+
+  <% end %>
+</div>

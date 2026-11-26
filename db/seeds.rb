@@ -32,3 +32,26 @@ products.each do |name, category_name, description, price, stock|
 end
 
 puts "Total products: #{Product.count}"
+# Canadian provinces and territories
+provinces = {
+  "AB" => ["Alberta", 0.05],
+  "BC" => ["British Columbia", 0.12],
+  "MB" => ["Manitoba", 0.12],
+  "NB" => ["New Brunswick", 0.15],
+  "NL" => ["Newfoundland and Labrador", 0.15],
+  "NT" => ["Northwest Territories", 0.05],
+  "NS" => ["Nova Scotia", 0.14],
+  "NU" => ["Nunavut", 0.05],
+  "ON" => ["Ontario", 0.13],
+  "PE" => ["Prince Edward Island", 0.15],
+  "QC" => ["Quebec", 0.14975],
+  "SK" => ["Saskatchewan", 0.11],
+  "YT" => ["Yukon", 0.05]
+}
+
+provinces.each do |code, (name, tax_rate)|
+  province = Province.find_or_initialize_by(code: code)
+  province.update!(name: name, tax_rate: tax_rate)
+end
+
+puts "13 Canadian provinces and territories seeded successfully."

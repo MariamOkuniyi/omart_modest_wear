@@ -11,8 +11,15 @@ class CheckoutController < ApplicationController
   }.freeze
 
   def new
-  @order = current_user.orders.build
-end
+    @order = current_user.orders.build(
+      full_name: current_user.full_name,
+      email: current_user.email,
+      street_address: current_user.street_address,
+      city: current_user.city,
+      province: current_user.province&.code,
+      postal_code: current_user.postal_code
+  )
+  end
 
   def create
     @order = current_user.orders.build(order_params)

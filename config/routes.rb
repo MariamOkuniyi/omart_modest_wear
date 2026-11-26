@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resource :addresses, only: [:edit, :update], path: "addresses"
   resources :orders, only: [:show]
   resources :products, only: [:show]
 
