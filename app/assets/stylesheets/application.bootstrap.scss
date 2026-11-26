@@ -1,2 +1,40 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+
+
+/* Omart Modest Wear - Kaminari Pagination */
+
+nav.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+nav.pagination > span {
+  display: inline-block;
+}
+
+nav.pagination a,
+nav.pagination .current {
+  display: inline-block;
+  padding: 8px 14px;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #212529;
+  background-color: #ffffff;
+}
+
+nav.pagination a:hover {
+  background-color: #212529;
+  color: #ffffff;
+}
+
+nav.pagination .current {
+  background-color: #212529;
+  color: #ffffff;
+  font-weight: bold;
+}

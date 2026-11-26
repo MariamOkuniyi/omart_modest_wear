@@ -14,5 +14,8 @@ class StoreController < ApplicationController
     if params[:category_id].present?
       @products = @products.where(category_id: params[:category_id])
     end
+
+    # Display 6 products per page using Kaminari.
+    @products = @products.page(params[:page]).per(6)
   end
 end
